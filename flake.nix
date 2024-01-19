@@ -15,11 +15,18 @@
       in
       with pkgs;
       {
-        devShells.default = mkShell {
+        devShells.default = mkShell rec {
           buildInputs = [
             rust-bin.stable.latest.default
             rust-analyzer
+            xorg.libX11
+            pkg-config
+            libGL
+            xorg.libXrandr
+            xorg.libXcursor
+            xorg.libXi
           ];
+          LD_LIBRARY_PATH = "${lib.makeLibraryPath buildInputs}";
         };
       }
       );
