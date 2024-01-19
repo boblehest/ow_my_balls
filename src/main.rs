@@ -55,7 +55,6 @@ impl EventHandler for Model {
             miniquad::MouseButton::Left => {
                 let click_position = self.camera.screen_to_world(Vec2 { x, y });
                 let rigid_body = RigidBodyBuilder::dynamic()
-                    // TODO Translate according to camera!
                     .translation(vector![click_position.x, click_position.y])
                     .linvel(vector![0.0, -80.0])
                     .user_data(42)
@@ -83,7 +82,7 @@ fn init_model(camera: Camera2D) -> Model {
         .translation(vector![LINE_WIDTH * 0.5, LEVEL_HEIGHT * 0.5])
         .build();
     let collider_wall_r = ColliderBuilder::cuboid(LINE_WIDTH * 0.5, LEVEL_HEIGHT * 0.5)
-        .translation(vector![LEVEL_WIDTH - LINE_WIDTH, LEVEL_HEIGHT * 0.5])
+        .translation(vector![LEVEL_WIDTH - LINE_WIDTH * 0.5, LEVEL_HEIGHT * 0.5])
         .build();
 
     collider_set.insert(collider);
