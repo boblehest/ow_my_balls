@@ -17,8 +17,9 @@
       {
         devShells.default = mkShell rec {
           buildInputs = [
-            rust-bin.stable.latest.default
+            (rust-bin.fromRustupToolchainFile ./rust-toolchain.toml)
             rust-analyzer
+            cargo-flamegraph
             xorg.libX11
             pkg-config
             libGL
